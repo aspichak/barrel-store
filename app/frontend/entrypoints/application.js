@@ -7,7 +7,6 @@ InertiaProgress.init()
 const pages = import.meta.glob('@/Pages/**/*.vue')
 
 createInertiaApp({
-  title: title => title ? `${title} - The Barrel Store` : 'The Barrel Store',
   resolve: name => pages[`/Pages/${name}.vue`](),
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })

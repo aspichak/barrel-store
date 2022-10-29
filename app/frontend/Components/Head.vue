@@ -2,11 +2,12 @@
   import { Head } from '@inertiajs/inertia-vue3'
 
   defineProps({
-    name: String,
+    title: String
   })
 </script>
 
 <template>
-  <Head title="Hello There!" />
-  <p>Hello, {{ name }}!</p>
+  <Head :title="title ? `${title} - The Barrel Store` : 'The Barrel Store'">
+    <slot />
+  </Head>
 </template>
