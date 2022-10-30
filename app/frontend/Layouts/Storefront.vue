@@ -1,5 +1,7 @@
 <script setup>
   import Head from '@/Components/Head.vue'
+
+  defineProps(['user']);
 </script>
 
 <template>
@@ -24,6 +26,7 @@
                             </ul>
                         </li>
                     </ul>
+                    {{ user.email }}
                     <form class="d-flex">
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
