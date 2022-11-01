@@ -1,0 +1,22 @@
+services:
+  app:
+    image: barrelstore
+    build:
+      context: .
+    ports:
+      - 3000:3000
+    environment:
+      DATABASE_HOST: db
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD:?}
+    restart: unless-stopped
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: barrelstore
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:?}
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
