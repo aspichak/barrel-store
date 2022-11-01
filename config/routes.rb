@@ -9,5 +9,7 @@ Rails.application.routes.draw do
 
   resources :barrel
 
+  inertia 'about' => 'About'
+
   root 'storefront#index'
 end
