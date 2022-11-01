@@ -1,5 +1,6 @@
 class BarrelController < ApplicationController
   before_action :authenticate_user!, except: [:show]
+  before_action :set_barrel, only: %i[ show edit update destroy ]
 
   def index
     render inertia: 'Barrels/Index', props: {
@@ -9,7 +10,7 @@ class BarrelController < ApplicationController
 
   def show
     render inertia: 'Barrels/Show', props: {
-      barrel: Barrel.find(params[:id])
+      barrel: @barrel
     }
   end
 
@@ -19,14 +20,12 @@ class BarrelController < ApplicationController
 
   def edit
     render inertia: 'Barrels/Edit', props: {
-      barrel: Barrel.find(params[:id])
+      barrel: @barrel
     }
   end
 
   def create
-    barrel = Barrel.create barrel_params
-
-    if barrel.persisted?
+    if Barrel.new(barrel_params).save
       redirect_to barrel_index_path, notice: 'Barrel saved.'
     else
       redirect_to new_barrel_path, inertia: { errors: barrel.errors }
@@ -34,17 +33,11 @@ class BarrelController < ApplicationController
   end
 
   def update
-    if Barrel.find(params[:id]).update barrel_params
+    if @barrel.update(barrel_params)
       redirect_to barrel_index_path, notice: 'Barrel saved.'
     else
       redirect_to edit_barrel_path, inertia: { errors: barrel.errors }
     end
-
-    # if @organization.update(organization_params)
-    #   redirect_to edit_organization_path(@organization), notice: 'Organization updated.'
-    # else
-    #   redirect_to edit_organization_path(@organization), inertia: { errors: @organization.errors }
-    # end
   end
 
   def destroy
@@ -53,6 +46,10 @@ class BarrelController < ApplicationController
   end
 
   private
+
+  def set_barrel
+    @barrel = Barrel.find(params[:id])
+  end
 
   def barrel_params
     params.fetch(:barrel).permit(:id, :name, :description, :volume, :price)
