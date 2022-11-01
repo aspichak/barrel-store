@@ -21,6 +21,16 @@ class ApplicationController < ActionController::Base
     redirect_back fallback_location: '/', notice: 'The page expired, please try again.'
   end
 
+  protected
+
+  def authenticate_user!
+    if user_signed_in?
+      super
+    else
+      redirect_to login_path
+    end
+  end
+
   def request_authenticity_tokens
     super << request.headers['HTTP_X_XSRF_TOKEN']
   end
