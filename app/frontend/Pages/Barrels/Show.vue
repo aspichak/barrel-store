@@ -7,6 +7,8 @@
 </script>
 
 <script setup>
+  import Currency from '@/Components/Currency.vue'
+
   defineProps({
     barrel: Object
   })
@@ -16,5 +18,5 @@
   <h1>{{ barrel.name }}</h1>
   <p v-if="barrel.description">{{ barrel.description }}</p>
   <p v-else>No description provided</p>
-  <p>Price: ${{ barrel.price }}</p>
+  <p>Price: <Currency :value="barrel.price"/></p>
 </template>

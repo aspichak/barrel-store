@@ -8,6 +8,7 @@
 
 <script setup>
   import { Link } from '@inertiajs/inertia-vue3'
+  import Currency from '@/Components/Currency.vue'
 
   defineProps({
     inventory: Array
@@ -32,7 +33,7 @@
                       <h5 class="fw-bolder">{{ b.name }}</h5>
                     </Link>
                     <!-- Product price-->
-                    ${{ b.price }}
+                    <Currency :value="b.price"/>
                 </div>
             </div>
         </div>

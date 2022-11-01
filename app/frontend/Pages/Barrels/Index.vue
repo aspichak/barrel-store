@@ -8,6 +8,7 @@
 
 <script setup>
   import { Link, useForm } from '@inertiajs/inertia-vue3'
+  import Currency from '@/Components/Currency.vue'
 
   defineProps({
     inventory: Array
@@ -34,7 +35,7 @@
     <tbody>
       <tr v-for="b in inventory">
         <td><Link :href="`/barrel/${b.id}/edit`">{{ b.name }}</Link></td>
-        <td>${{ b.price }}</td>
+        <td><Currency :value="b.price"/></td>
         <td>
           <button class="btn btn-danger" @click="destroy(b)">Delete</button>
         </td>
