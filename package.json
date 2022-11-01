@@ -10,6 +10,7 @@
     "@inertiajs/progress": "^0.2.7",
     "@popperjs/core": "^2.11.6",
     "@vitejs/plugin-vue": "^3.2.0",
-    "bootstrap": "^5.2.2"
+    "bootstrap": "^5.2.2",
+    "bootswatch": "^5.2.2"
   }
 }

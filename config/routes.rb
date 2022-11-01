@@ -7,5 +7,7 @@ Rails.application.routes.draw do
     get '/logout' => 'sessions#destroy'
   end
 
+  resources :barrel
+
   root 'storefront#index'
 end

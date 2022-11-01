@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-  # before_action :authenticate_user!
-
   before_action do
     cookies['XSRF-TOKEN'] = { value: form_authenticity_token, same_site: 'Strict' }
   end
