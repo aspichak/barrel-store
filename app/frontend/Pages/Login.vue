@@ -10,8 +10,8 @@
   import { useForm } from '@inertiajs/inertia-vue3'
 
   const form = useForm({ user: {
-    email: null,
-    password: null,
+    email: 'demo@example.com',
+    password: 'password',
     remember_me: true
   }})
 
