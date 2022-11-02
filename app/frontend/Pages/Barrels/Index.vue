@@ -24,19 +24,21 @@
 <template>
   <Link href="/barrel/new" class="btn btn-primary">New Barrel</Link>
 
-  <table class="table">
+  <table class="table align-middle">
     <thead>
       <tr>
-        <th scope="col">Name</th>
+        <th scope="col"></th>
+        <th scope="col" style="width: 100%">Name</th>
         <th scope="col">Price</th>
         <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="b in inventory">
+        <td><img :src="b.image_url"/></td>
         <td><Link :href="`/barrel/${b.id}/edit`">{{ b.name }}</Link></td>
         <td><Currency :value="b.price"/></td>
-        <td>
+        <td class="text-end">
           <button class="btn btn-danger" @click="destroy(b)">Delete</button>
         </td>
       </tr>

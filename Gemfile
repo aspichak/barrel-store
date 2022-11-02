@@ -62,3 +62,5 @@ gem "vite_rails", "~> 3.0"
 gem "devise", "~> 4.8"
 
 gem "pg", "~> 1.4", :group => :production
+
+gem "image_processing", "~> 1.12"

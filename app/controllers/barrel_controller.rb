@@ -1,10 +1,12 @@
 class BarrelController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :set_barrel, only: %i[ show edit update destroy ]
+  before_action :set_barrel, only: %i[show edit update destroy]
 
   def index
     render inertia: 'Barrels/Index', props: {
-      inventory: Barrel.all
+      inventory: Barrel.with_attached_image.all.map do |barrel|
+        barrel.as_json.merge({ image_url: barrel.image.attached? ? url_for(barrel.image.variant(resize_to_fill: [48, 48])) : 'https://via.placeholder.com/48/fff/fff' })
+      end
     }
   end
 
@@ -25,7 +27,9 @@ class BarrelController < ApplicationController
   end
 
   def create
-    if Barrel.new(barrel_params).save
+    barrel = Barrel.new(barrel_params)
+
+    if barrel.save
       redirect_to barrel_index_path, notice: 'Barrel saved.'
     else
       redirect_to new_barrel_path, inertia: { errors: barrel.errors }
@@ -36,7 +40,7 @@ class BarrelController < ApplicationController
     if @barrel.update(barrel_params)
       redirect_to barrel_index_path, notice: 'Barrel saved.'
     else
-      redirect_to edit_barrel_path, inertia: { errors: barrel.errors }
+      redirect_to edit_barrel_path, inertia: { errors: @barrel.errors }
     end
   end
 
@@ -52,6 +56,6 @@ class BarrelController < ApplicationController
   end
 
   def barrel_params
-    params.fetch(:barrel).permit(:id, :name, :description, :volume, :price)
+    params.permit(:id, :name, :description, :volume, :price, :image)
   end
 end
