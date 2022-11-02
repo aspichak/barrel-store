@@ -16,7 +16,11 @@ class BarrelController < ApplicationController
 
   def show
     render inertia: 'Barrels/Show', props: {
-      barrel: @barrel
+      barrel: @barrel.as_json.merge({
+        image_url: @barrel.image.attached? ?
+          url_for(@barrel.image) :
+          'https://via.placeholder.com/512/fff/fff'
+      })
     }
   end
 
