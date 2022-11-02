@@ -16,7 +16,7 @@
 
 <template>
   <h1>{{ barrel.name }}</h1>
-  <p v-if="barrel.description">{{ barrel.description }}</p>
+  <p v-if="barrel.description" v-html="barrel.description"></p>
   <p v-else>No description provided</p>
   <p>Price: <Currency :value="barrel.price"/></p>
 </template>

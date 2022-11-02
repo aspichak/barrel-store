@@ -12,7 +12,7 @@
   import Form from '@/Components/Form.vue'
   import Input from '@/Components/Input.vue'
   import FileInput from '@/Components/FileInput.vue'
-  import Textarea from '@/Components/Textarea.vue'
+  import QuillEditor from '@/Components/QuillEditor.vue'
 
   const props = defineProps({
     url: String,
@@ -38,7 +38,7 @@
     <progress class="d-block w-100" v-if="form.progress" :value="form.progress.percentage" max="100">
       {{ form.progress.percentage }}%
     </progress>
-    <Textarea id="description" label="Description" rows="20" />
+    <QuillEditor id="description" label="Description" />
     <Input id="volume" type="number" label="Volume (Gal)" min="0" />
     <Input id="price" type="number" label="Price (USD)" min="0" step="0.01" />
 
