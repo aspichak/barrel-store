@@ -5,7 +5,11 @@ class BarrelController < ApplicationController
   def index
     render inertia: 'Barrels/Index', props: {
       inventory: Barrel.with_attached_image.all.map do |barrel|
-        barrel.as_json.merge({ image_url: barrel.image.attached? ? url_for(barrel.image.variant(resize_to_fill: [48, 48])) : 'https://via.placeholder.com/48/fff/fff' })
+        barrel.as_json.merge({
+          image_url: barrel.image.attached? ?
+            url_for(barrel.image.variant(resize_to_fill: [48, 48])) :
+            'https://via.placeholder.com/48/fff/fff'
+        })
       end
     }
   end
@@ -56,6 +60,8 @@ class BarrelController < ApplicationController
   end
 
   def barrel_params
-    params.permit(:id, :name, :description, :volume, :price, :image)
+    params.permit(:id, :name, :description, :volume, :price, :image).tap do |p|
+      p.delete(:image) if p[:image].blank?
+    end
   end
 end
