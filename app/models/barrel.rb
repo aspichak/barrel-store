@@ -13,7 +13,6 @@ class Barrel < ApplicationRecord
   private
 
   def valid_image
-    errors.add :description, 'required'
     errors.add :image, 'required' unless image.attached?
     errors.add :image, 'invalid or corrupt image' unless image.variable?
   end
