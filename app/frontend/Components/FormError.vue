@@ -1,5 +1,5 @@
 <script>
-  import { inject } from 'vue'
+  import { inject } from 'vue' // TODO:  inject() can only be used inside setup() or functional components.
 
   export function errorFor(id) {
     const form = inject('form')

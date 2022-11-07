@@ -1,8 +1,8 @@
 <script setup>
-  import FormError, { errorClassFor } from './FormError.vue'
   import { inject, getCurrentInstance } from 'vue'
-  import { QuillEditor } from '@vueup/vue-quill'
-  import '@vueup/vue-quill/dist/vue-quill.snow.css';
+  import CKEditor from '@ckeditor/ckeditor5-vue'
+  import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+  import FormError from './FormError.vue'
 
   defineProps({
     id: {
@@ -20,10 +20,15 @@
   })
 
   const form = inject('form')
+  const Editor = CKEditor.component
+  const config = {
+    toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ]
+  }
+
 </script>
 
 <template>
   <label :for="id" class="form-label">{{ label }}</label>
-  <QuillEditor theme="snow" contentType="html" v-model:content="form[id]" :id="id" v-bind="$attrs" />
+  <Editor :editor="ClassicEditor" v-model="form[id]" :config="config" v-bind="$attrs" />
   <FormError :id="id" class="d-block" />
 </template>

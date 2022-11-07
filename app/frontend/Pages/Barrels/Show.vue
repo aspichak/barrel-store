@@ -15,9 +15,10 @@
 </script>
 
 <template>
+  <!-- TODO: Add barrel volume -->
   <section class="py-5">
       <div class="container px-4 px-lg-5 my-5">
-          <div class="row gx-4 gx-lg-5 align-items-center">
+          <div class="row gx-4 gx-lg-5">
               <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" :src="barrel.image_url" alt="Barrel image" /></div>
               <div class="col-md-6">
                   <div class="small mb-1">SKU: BRL-{{ ('0000' + barrel.id).slice(-4) }}</div>
