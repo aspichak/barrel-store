@@ -1,0 +1,29 @@
+.git
+.gitignore
+README.md
+
+# Rails
+.env
+.env.sample
+.bundle
+.ruby-version
+.ruby-gemset
+.rvmrc
+*.rbc
+capybara-*.html
+config/master.key
+db/*.sqlite3
+db/*.sqlite3-journal
+log/*
+tmp/*
+public/system
+coverage/
+spec/tmp
+storage/*
+
+# Node.js
+node_modules/
+
+# Docker
+Dockerfile*
+docker-compose*.yml

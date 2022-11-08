@@ -1,0 +1,19 @@
+services:
+  app:
+    image: barrelstore
+    build:
+      context: .
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+        - ENVIRONMENT=development
+    ports:
+      - 3000:3000
+      - 3036:3036
+    volumes:
+      - ./:/app:cached
+      - bundle:/usr/local/bundle
+    restart: unless-stopped
+
+volumes:
+  bundle:

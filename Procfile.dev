@@ -1,3 +1,2 @@
-
 vite: ruby bin/vite dev
-web: ruby bin/rails s
+web: ruby bin/rails s -b 0.0.0.0 -p 3000
