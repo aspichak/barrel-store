@@ -5,5 +5,12 @@
 </script>
 
 <template>
-  <span>${{ Number(value).toFixed(2) }}</span>
+  <span>
+    ${{
+      Number(value).toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      })
+    }}
+  </span>
 </template>
